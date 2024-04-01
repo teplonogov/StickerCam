@@ -9,7 +9,7 @@ What to imrove:
 - Support Landscape orientation
 - Cache intermediate textures for switch paper
 - Handle errors from `CaptureService` and `StickerProcessor`
-- Add clear textures to `OffscreenRenderer`
+- Clear textures in `OffscreenRenderer` if necessary
 - Move `Core` to local Swift Package
 - Move `CameraModule` to local Swift Package
 - Add XcodeGen
