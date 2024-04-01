@@ -51,17 +51,6 @@ final class OffscreenRenderer {
         }
     }
 
-    func clear() {
-        guard let targetTexture = try? GPU.default.device.texture2D(
-            pixelFormat: self.pixelFormat,
-            width: self.textureWidth,
-            height: self.textureHeight,
-            usage: [.shaderRead, .renderTarget]
-        ) else { return }
-
-        self.renderPassDescriptor.colorAttachments[0].texture = targetTexture
-    }
-
     // MARK: Private
 
     private var renderPassDescriptor: MTLRenderPassDescriptor

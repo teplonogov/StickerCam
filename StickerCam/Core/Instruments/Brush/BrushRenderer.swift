@@ -56,13 +56,4 @@ final class BrushRenderer {
         commandBuffer.commit()
         commandBuffer.waitUntilCompleted()
     }
-
-    func redraw(strokes: [BrushStrokeData]) {
-        self.clear()
-        self.draw(strokes: strokes)
-    }
-
-    func clear() {
-        self.offscreenRenderer.clear()
-    }
 }
