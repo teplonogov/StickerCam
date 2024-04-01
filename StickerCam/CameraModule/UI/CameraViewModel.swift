@@ -109,7 +109,7 @@ final class CameraViewModel: CameraViewModelProtocol {
     func viewDidTapPaper(id: String) {
         guard let paper = PaperType.allCases.first(where: { $0.id == id }) else { return }
         self.paperType = paper
-        // TODO: Better to cache textures for change paper, but algorythm is fast and this is not crytical
+        // TODO: Better to cache textures for change paper, but algorithm is fast and this is not crytical
         self.viewDidTapMakeSticker()
     }
     
