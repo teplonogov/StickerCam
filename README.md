@@ -7,7 +7,6 @@ How it works:
 
 What to imrove:
 - Support Landscape orientation
-- Cache intermediate textures for switch paper
 - Handle errors from `CaptureService` and `StickerProcessor`
 - Clear textures in `OffscreenRenderer` if necessary
 - Move `Core` to local Swift Package
