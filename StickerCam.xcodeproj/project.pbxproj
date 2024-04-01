@@ -86,6 +86,9 @@
 		CF5DA02C2BB8AF3100BDD2C8 /* Brush */ = {
 			isa = PBXGroup;
 			children = (
+				CFFB395A2BBA26BA008B54E3 /* CrumpledPaperTexture.png */,
+				CFFB395C2BBA26C0008B54E3 /* PaperTexture.png */,
+				CFFB39562BBA21F3008B54E3 /* Brush.png */,
 				CF5DA0282BB8AE9200BDD2C8 /* Brush.swift */,
 				CFA22AC22BB8BBB10076E7EE /* BrushRenderer.swift */,
 				CFA22AC42BB8BE3B0076E7EE /* OffscreenRenderer.swift */,
@@ -112,16 +115,9 @@
 		CF9430132BB71847003CCB01 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				CFC2172E2BBADE5D00D90A77 /* Instruments */,
 				CF9430112BB71842003CCB01 /* GPU.swift */,
-				CFFB395A2BBA26BA008B54E3 /* CrumpledPaperTexture.png */,
-				CFFB395C2BBA26C0008B54E3 /* PaperTexture.png */,
-				CFFB39562BBA21F3008B54E3 /* Brush.png */,
-				CF5DA02C2BB8AF3100BDD2C8 /* Brush */,
-				CF8BFD082BB5C0C400B53AB8 /* SegmentationService.swift */,
 				CF9430142BB71990003CCB01 /* StickerProcessor.swift */,
-				CFFB39582BBA22B7008B54E3 /* StickerKernel.swift */,
-				CF9430182BB71B2B003CCB01 /* AlphaMaskKernel.swift */,
-				CFFB39502BBA0FBA008B54E3 /* PaperMaskKernel.swift */,
 				CF94301A2BB71C60003CCB01 /* Metal+Extensions.swift */,
 				CF9430162BB719AD003CCB01 /* StickerShaders.metal */,
 			);
@@ -165,6 +161,18 @@
 				CF8BFD072BB4944900B53AB8 /* UI */,
 			);
 			path = CameraModule;
+			sourceTree = "<group>";
+		};
+		CFC2172E2BBADE5D00D90A77 /* Instruments */ = {
+			isa = PBXGroup;
+			children = (
+				CF5DA02C2BB8AF3100BDD2C8 /* Brush */,
+				CF8BFD082BB5C0C400B53AB8 /* SegmentationService.swift */,
+				CFFB39582BBA22B7008B54E3 /* StickerKernel.swift */,
+				CF9430182BB71B2B003CCB01 /* AlphaMaskKernel.swift */,
+				CFFB39502BBA0FBA008B54E3 /* PaperMaskKernel.swift */,
+			);
+			path = Instruments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
