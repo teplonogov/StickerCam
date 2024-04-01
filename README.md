@@ -1,7 +1,7 @@
 First beta version of paper sricker camera. 
 
 How it works:
-- `StickerProcessor` is responsible to all Core processes 
+- `StickerProcessor` is responsible for all Core processes 
 - Vision is resposible for segmentation (`SegmentationService`)
 - Sticker creation is build with Metal kernels (`AlphaMaskKernel`, `PaperMaskKernel`, `StickerKernel`, `Brush`)
 
