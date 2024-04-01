@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
 
-        let cameraModule = CameraModuleAssembly.buildCameraModule()
+        let cameraModule = try? CameraModuleAssembly.buildCameraModule()
 
         window?.rootViewController = cameraModule
         window?.makeKeyAndVisible()

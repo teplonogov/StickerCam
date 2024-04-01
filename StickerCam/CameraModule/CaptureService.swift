@@ -1,18 +1,31 @@
 import Foundation
 import AVFoundation
 
-protocol CaptureServiceProtocol {
-    func setupSession() async throws -> AVCaptureVideoPreviewLayer
+protocol CaptureServiceDelegate: AnyObject {
+    func willStartCapturing()
+    func willFinishCapturing()
+    func didFinishCapturing(photo: AVCapturePhoto)
 }
 
-final class CaptureService: CaptureServiceProtocol {
+protocol CaptureServiceProtocol {
+    func setDelegate(_ delegate: CaptureServiceDelegate?)
+    func setupSession() async throws -> AVCaptureVideoPreviewLayer
+    func capturePhoto() async
+    func stopSession() async
+    func resumeSession() async
+}
+
+final class CaptureService: NSObject, CaptureServiceProtocol {
     
+    private weak var delegate: CaptureServiceDelegate?
     private let captureSession = AVCaptureSession()
-//    private var captureInput: AVCaptureInput?
     private let photoOutput: AVCapturePhotoOutput = AVCapturePhotoOutput()
-//    private let streamOutput = AVCaptureVideoDataOutput()
     
     // MARK: - CameraServiceProtocol
+    
+    func setDelegate(_ delegate: CaptureServiceDelegate?) {
+        self.delegate = delegate
+    }
     
     func setupSession() async throws -> AVCaptureVideoPreviewLayer {
         guard 
@@ -23,9 +36,6 @@ final class CaptureService: CaptureServiceProtocol {
         }
         
         self.captureSession.beginConfiguration()
-        if self.captureSession.canSetSessionPreset(.photo) {
-            self.captureSession.sessionPreset = .photo
-        }
         
         self.captureSession.inputs.forEach { input in
             if let deviceInput = input as? AVCaptureDeviceInput {
@@ -43,37 +53,64 @@ final class CaptureService: CaptureServiceProtocol {
         self.captureSession.addInput(wideInput)
         self.captureSession.addOutput(self.photoOutput)
         
+        if self.captureSession.canSetSessionPreset(.photo) {
+            self.captureSession.sessionPreset = .photo
+        }
+        
         self.captureSession.commitConfiguration()
         self.captureSession.startRunning()
         
         return AVCaptureVideoPreviewLayer(session: self.captureSession)
     }
     
+    func capturePhoto() async {
+        let photoSettings = AVCapturePhotoSettings()
+        photoSettings.photoQualityPrioritization = .speed
+        
+        photoOutput.capturePhoto(with: photoSettings, delegate: self)
+    }
+    
+    func stopSession() async {
+        guard self.captureSession.isRunning else { return }
+        self.captureSession.stopRunning()
+    }
+    
+    func resumeSession() async {
+        guard !self.captureSession.isRunning else { return }
+        self.captureSession.startRunning()
+    }
+    
     // MARK: - Private
+}
+
+// MARK: - AVCapturePhotoCaptureDelegate
+
+extension CaptureService: AVCapturePhotoCaptureDelegate {
+    func photoOutput(
+        _ output: AVCapturePhotoOutput,
+        willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings
+    ) {
+        self.delegate?.willStartCapturing()
+    }
     
-//    private func prepareCaptureSession() async throws {
-//        self.captureSession.beginConfiguration()
-//        if self.captureSession.canSetSessionPreset(.photo) {
-//            self.captureSession.sessionPreset = .photo
-//        }
-//        
-//        if let currentInput = self.captureSession.inputs.first as? AVCaptureDeviceInput {
-//            self.captureSession.removeInput(currentInput)
-//        }
-//        
-//        guard
-//            let captureInput = self.captureInput,
-//            self.captureSession.canAddInput(captureInput) else {
-//            throw CaptureServiceErrors.failedAddingCaptureInput
-//        }
-//        
-//        self.captureSession.addInput(captureInput)
-//        try self.prepareOutputs()
-//        self.captureSession.commitConfiguration()
-//        self.captureSession.startRunning()
-//        self.isSessionRunning = self.captureSession.isRunning
-//    }
+    func photoOutput(
+        _ output: AVCapturePhotoOutput,
+        didCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings
+    ) {
+        self.delegate?.willFinishCapturing()
+    }
     
+    func photoOutput(
+        _ output: AVCapturePhotoOutput,
+        didFinishProcessingPhoto photo: AVCapturePhoto,
+        error: Error?
+    ) {
+        guard error == nil else {
+            // TODO: Handle error
+            return
+        }
+        self.delegate?.didFinishCapturing(photo: photo)
+    }
 }
 
 enum CaptureServiceErrors: Error {

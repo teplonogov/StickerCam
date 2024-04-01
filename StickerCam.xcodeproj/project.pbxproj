@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF5DA0292BB8AE9200BDD2C8 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA0282BB8AE9200BDD2C8 /* Brush.swift */; };
+		CF5DA02B2BB8AF1900BDD2C8 /* BrushLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA02A2BB8AF1900BDD2C8 /* BrushLine.swift */; };
+		CF5DA02E2BB8B02500BDD2C8 /* BrushColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA02D2BB8B02500BDD2C8 /* BrushColor.swift */; };
+		CF5DA0302BB8B06000BDD2C8 /* SIMD+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA02F2BB8B06000BDD2C8 /* SIMD+Extensions.swift */; };
+		CF5DA0322BB8B10B00BDD2C8 /* BrushStrokeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA0312BB8B10B00BDD2C8 /* BrushStrokeData.swift */; };
+		CF5DA0342BB8B1C400BDD2C8 /* BrushMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF5DA0332BB8B1C400BDD2C8 /* BrushMath.swift */; };
+		CF8BFD062BB4942700B53AB8 /* CaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8BFD052BB4942700B53AB8 /* CaptureButton.swift */; };
+		CF8BFD092BB5C0C400B53AB8 /* SegmentationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8BFD082BB5C0C400B53AB8 /* SegmentationService.swift */; };
+		CF9430122BB71842003CCB01 /* GPU.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9430112BB71842003CCB01 /* GPU.swift */; };
+		CF9430152BB71990003CCB01 /* StickerProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9430142BB71990003CCB01 /* StickerProcessor.swift */; };
+		CF9430172BB719AD003CCB01 /* StickerShaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = CF9430162BB719AD003CCB01 /* StickerShaders.metal */; };
+		CF9430192BB71B2B003CCB01 /* AlphaMaskKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9430182BB71B2B003CCB01 /* AlphaMaskKernel.swift */; };
+		CF94301B2BB71C60003CCB01 /* Metal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF94301A2BB71C60003CCB01 /* Metal+Extensions.swift */; };
 		CF9B5EEA2BB462D500F40AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF9B5EE92BB462D500F40AF3 /* Assets.xcassets */; };
 		CF9B5EF52BB464FC00F40AF3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B5EF42BB464FC00F40AF3 /* SceneDelegate.swift */; };
 		CF9B5EF72BB4652000F40AF3 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B5EF62BB4652000F40AF3 /* CameraController.swift */; };
@@ -16,9 +29,29 @@
 		CF9B5F042BB4827600F40AF3 /* CameraModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B5F032BB4827600F40AF3 /* CameraModuleAssembly.swift */; };
 		CF9B5F062BB4830600F40AF3 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9B5F052BB4830600F40AF3 /* SceneView.swift */; };
 		CF9B5F092BB486C300F40AF3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CF9B5F082BB486C300F40AF3 /* SnapKit */; };
+		CFA22AC32BB8BBB10076E7EE /* BrushRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA22AC22BB8BBB10076E7EE /* BrushRenderer.swift */; };
+		CFA22AC52BB8BE3B0076E7EE /* OffscreenRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA22AC42BB8BE3B0076E7EE /* OffscreenRenderer.swift */; };
+		CFFB39512BBA0FBA008B54E3 /* PaperMaskKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB39502BBA0FBA008B54E3 /* PaperMaskKernel.swift */; };
+		CFFB39572BBA21F4008B54E3 /* Brush.png in Resources */ = {isa = PBXBuildFile; fileRef = CFFB39562BBA21F3008B54E3 /* Brush.png */; };
+		CFFB39592BBA22B7008B54E3 /* StickerKernel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB39582BBA22B7008B54E3 /* StickerKernel.swift */; };
+		CFFB395B2BBA26BA008B54E3 /* CrumpledPaperTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = CFFB395A2BBA26BA008B54E3 /* CrumpledPaperTexture.png */; };
+		CFFB395D2BBA26C0008B54E3 /* PaperTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = CFFB395C2BBA26C0008B54E3 /* PaperTexture.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF5DA0282BB8AE9200BDD2C8 /* Brush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brush.swift; sourceTree = "<group>"; };
+		CF5DA02A2BB8AF1900BDD2C8 /* BrushLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushLine.swift; sourceTree = "<group>"; };
+		CF5DA02D2BB8B02500BDD2C8 /* BrushColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushColor.swift; sourceTree = "<group>"; };
+		CF5DA02F2BB8B06000BDD2C8 /* SIMD+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SIMD+Extensions.swift"; sourceTree = "<group>"; };
+		CF5DA0312BB8B10B00BDD2C8 /* BrushStrokeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushStrokeData.swift; sourceTree = "<group>"; };
+		CF5DA0332BB8B1C400BDD2C8 /* BrushMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushMath.swift; sourceTree = "<group>"; };
+		CF8BFD052BB4942700B53AB8 /* CaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureButton.swift; sourceTree = "<group>"; };
+		CF8BFD082BB5C0C400B53AB8 /* SegmentationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentationService.swift; sourceTree = "<group>"; };
+		CF9430112BB71842003CCB01 /* GPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPU.swift; sourceTree = "<group>"; };
+		CF9430142BB71990003CCB01 /* StickerProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerProcessor.swift; sourceTree = "<group>"; };
+		CF9430162BB719AD003CCB01 /* StickerShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = StickerShaders.metal; sourceTree = "<group>"; };
+		CF9430182BB71B2B003CCB01 /* AlphaMaskKernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMaskKernel.swift; sourceTree = "<group>"; };
+		CF94301A2BB71C60003CCB01 /* Metal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Metal+Extensions.swift"; sourceTree = "<group>"; };
 		CF9B5EE22BB462D300F40AF3 /* StickerCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StickerCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9B5EE92BB462D500F40AF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CF9B5EF42BB464FC00F40AF3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -29,6 +62,13 @@
 		CF9B5F012BB47B9100F40AF3 /* CaptureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureService.swift; sourceTree = "<group>"; };
 		CF9B5F032BB4827600F40AF3 /* CameraModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModuleAssembly.swift; sourceTree = "<group>"; };
 		CF9B5F052BB4830600F40AF3 /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		CFA22AC22BB8BBB10076E7EE /* BrushRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushRenderer.swift; sourceTree = "<group>"; };
+		CFA22AC42BB8BE3B0076E7EE /* OffscreenRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffscreenRenderer.swift; sourceTree = "<group>"; };
+		CFFB39502BBA0FBA008B54E3 /* PaperMaskKernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperMaskKernel.swift; sourceTree = "<group>"; };
+		CFFB39562BBA21F3008B54E3 /* Brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Brush.png; sourceTree = "<group>"; };
+		CFFB39582BBA22B7008B54E3 /* StickerKernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerKernel.swift; sourceTree = "<group>"; };
+		CFFB395A2BBA26BA008B54E3 /* CrumpledPaperTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CrumpledPaperTexture.png; sourceTree = "<group>"; };
+		CFFB395C2BBA26C0008B54E3 /* PaperTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PaperTexture.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +83,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF5DA02C2BB8AF3100BDD2C8 /* Brush */ = {
+			isa = PBXGroup;
+			children = (
+				CF5DA0282BB8AE9200BDD2C8 /* Brush.swift */,
+				CFA22AC22BB8BBB10076E7EE /* BrushRenderer.swift */,
+				CFA22AC42BB8BE3B0076E7EE /* OffscreenRenderer.swift */,
+				CF5DA0332BB8B1C400BDD2C8 /* BrushMath.swift */,
+				CF5DA02D2BB8B02500BDD2C8 /* BrushColor.swift */,
+				CF5DA0312BB8B10B00BDD2C8 /* BrushStrokeData.swift */,
+				CF5DA02A2BB8AF1900BDD2C8 /* BrushLine.swift */,
+				CF5DA02F2BB8B06000BDD2C8 /* SIMD+Extensions.swift */,
+			);
+			path = Brush;
+			sourceTree = "<group>";
+		};
+		CF8BFD072BB4944900B53AB8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				CF9B5EF62BB4652000F40AF3 /* CameraController.swift */,
+				CF8BFD052BB4942700B53AB8 /* CaptureButton.swift */,
+				CF9B5F052BB4830600F40AF3 /* SceneView.swift */,
+				CF9B5EFF2BB47B8700F40AF3 /* CameraViewModel.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		CF9430132BB71847003CCB01 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CF9430112BB71842003CCB01 /* GPU.swift */,
+				CFFB395A2BBA26BA008B54E3 /* CrumpledPaperTexture.png */,
+				CFFB395C2BBA26C0008B54E3 /* PaperTexture.png */,
+				CFFB39562BBA21F3008B54E3 /* Brush.png */,
+				CF5DA02C2BB8AF3100BDD2C8 /* Brush */,
+				CF8BFD082BB5C0C400B53AB8 /* SegmentationService.swift */,
+				CF9430142BB71990003CCB01 /* StickerProcessor.swift */,
+				CFFB39582BBA22B7008B54E3 /* StickerKernel.swift */,
+				CF9430182BB71B2B003CCB01 /* AlphaMaskKernel.swift */,
+				CFFB39502BBA0FBA008B54E3 /* PaperMaskKernel.swift */,
+				CF94301A2BB71C60003CCB01 /* Metal+Extensions.swift */,
+				CF9430162BB719AD003CCB01 /* StickerShaders.metal */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		CF9B5ED92BB462D300F40AF3 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +150,7 @@
 				CF9B5EF82BB467E700F40AF3 /* Info.plist */,
 				CF9B5EF42BB464FC00F40AF3 /* SceneDelegate.swift */,
 				CF9B5EFA2BB47AD000F40AF3 /* AppDelegate.swift */,
+				CF9430132BB71847003CCB01 /* Core */,
 				CF9B5EFE2BB47B7400F40AF3 /* CameraModule */,
 				CF9B5EE92BB462D500F40AF3 /* Assets.xcassets */,
 			);
@@ -75,10 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				CF9B5F032BB4827600F40AF3 /* CameraModuleAssembly.swift */,
-				CF9B5EF62BB4652000F40AF3 /* CameraController.swift */,
-				CF9B5F052BB4830600F40AF3 /* SceneView.swift */,
-				CF9B5EFF2BB47B8700F40AF3 /* CameraViewModel.swift */,
 				CF9B5F012BB47B9100F40AF3 /* CaptureService.swift */,
+				CF8BFD072BB4944900B53AB8 /* UI */,
 			);
 			path = CameraModule;
 			sourceTree = "<group>";
@@ -147,7 +231,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFFB395D2BBA26C0008B54E3 /* PaperTexture.png in Resources */,
+				CFFB39572BBA21F4008B54E3 /* Brush.png in Resources */,
 				CF9B5EEA2BB462D500F40AF3 /* Assets.xcassets in Resources */,
+				CFFB395B2BBA26BA008B54E3 /* CrumpledPaperTexture.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,13 +245,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF5DA0342BB8B1C400BDD2C8 /* BrushMath.swift in Sources */,
+				CF9430172BB719AD003CCB01 /* StickerShaders.metal in Sources */,
 				CF9B5F042BB4827600F40AF3 /* CameraModuleAssembly.swift in Sources */,
 				CF9B5EFB2BB47AD000F40AF3 /* AppDelegate.swift in Sources */,
+				CF9430122BB71842003CCB01 /* GPU.swift in Sources */,
 				CF9B5F002BB47B8700F40AF3 /* CameraViewModel.swift in Sources */,
+				CFA22AC52BB8BE3B0076E7EE /* OffscreenRenderer.swift in Sources */,
+				CF8BFD092BB5C0C400B53AB8 /* SegmentationService.swift in Sources */,
+				CF5DA02B2BB8AF1900BDD2C8 /* BrushLine.swift in Sources */,
 				CF9B5F062BB4830600F40AF3 /* SceneView.swift in Sources */,
 				CF9B5F022BB47B9100F40AF3 /* CaptureService.swift in Sources */,
+				CF5DA0322BB8B10B00BDD2C8 /* BrushStrokeData.swift in Sources */,
+				CFFB39592BBA22B7008B54E3 /* StickerKernel.swift in Sources */,
 				CF9B5EF72BB4652000F40AF3 /* CameraController.swift in Sources */,
+				CFFB39512BBA0FBA008B54E3 /* PaperMaskKernel.swift in Sources */,
+				CF5DA0302BB8B06000BDD2C8 /* SIMD+Extensions.swift in Sources */,
+				CF8BFD062BB4942700B53AB8 /* CaptureButton.swift in Sources */,
+				CF9430152BB71990003CCB01 /* StickerProcessor.swift in Sources */,
+				CF94301B2BB71C60003CCB01 /* Metal+Extensions.swift in Sources */,
+				CF5DA02E2BB8B02500BDD2C8 /* BrushColor.swift in Sources */,
+				CF5DA0292BB8AE9200BDD2C8 /* Brush.swift in Sources */,
+				CFA22AC32BB8BBB10076E7EE /* BrushRenderer.swift in Sources */,
 				CF9B5EF52BB464FC00F40AF3 /* SceneDelegate.swift in Sources */,
+				CF9430192BB71B2B003CCB01 /* AlphaMaskKernel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +418,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;
@@ -355,7 +459,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_OUTPUT_FORMAT = binary;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.2;

@@ -4,18 +4,7 @@ import AVFoundation.AVCaptureVideoPreviewLayer
 final class SceneView: UIView {
     
     private weak var videoLayer: AVCaptureVideoPreviewLayer?
-    
-    // MARK: - Lifecycle
-    
-    init() {
-        super.init(frame: .zero)
-//        self.setupUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+        
     // MARK: - Public
     
     func setVideoLayer(_ layer: AVCaptureVideoPreviewLayer) {
