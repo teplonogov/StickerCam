@@ -69,22 +69,6 @@ final class CameraController: UIViewController {
         label.text = "Failed sticker generation. Probably there is no object in the photo."
         return label
     }()
-    private lazy var paperSegmentControl: UISegmentedControl = {
-        let actions = PaperType.allCases.map { paper in
-            return UIAction(
-                title: paper.name,
-                image: nil,
-                identifier: .init(paper.id)
-            ) { [weak self] action in
-                self?.handlePaperSelection(paperId: action.identifier.rawValue)
-            }
-        }
-        let control = UISegmentedControl(items: actions)
-        control.selectedSegmentIndex = 0
-        control.isHidden = true
-        control.overrideUserInterfaceStyle = .dark
-        return control
-    }()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -161,12 +145,6 @@ final class CameraController: UIViewController {
             make.top.equalTo(self.sceneView.snp.bottom).offset(80)
             make.left.equalToSuperview().offset(12)
         }
-        
-        self.view.addSubview(self.paperSegmentControl)
-        self.paperSegmentControl.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.saveButton.snp.bottom).offset(20)
-        }
     }
     
     @objc
@@ -185,7 +163,6 @@ final class CameraController: UIViewController {
         self.imageView.isHidden = true
         self.errorLabel.isHidden = true
         self.saveButton.isHidden = true
-        self.paperSegmentControl.isHidden = true
     }
     
     @objc
@@ -196,11 +173,6 @@ final class CameraController: UIViewController {
     @objc
     private func handleSaveButton() {
         self.viewModel.viewDidTapSaveSticker()
-    }
-    
-    @objc
-    private func handlePaperSelection(paperId: String) {
-        self.viewModel.viewDidTapPaper(id: paperId)
     }
 }
 
@@ -233,14 +205,12 @@ extension CameraController: CameraView {
         self.imageView.image = image
         self.saveButton.isHidden = false
         self.stickerButton.isHidden = true
-        self.paperSegmentControl.isHidden = false
     }
     
     func showErrorLabel() {
         self.errorLabel.isHidden = false
         self.stickerButton.isHidden = true
         self.saveButton.isHidden = true
-        self.paperSegmentControl.isHidden = true
     }
     
     func showSuccesSavingAlert() {

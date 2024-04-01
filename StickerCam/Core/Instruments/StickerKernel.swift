@@ -16,6 +16,7 @@ final class StickerKernel {
         sticker: MTLTexture,
         paperMask: MTLTexture,
         paperTexture: MTLTexture,
+        overlayPaperTexture: MTLTexture,
         destination: MTLTexture,
         in commandBuffer: MTLCommandBuffer
     ) throws {
@@ -29,7 +30,8 @@ final class StickerKernel {
         encoder.setTexture(sticker, index: 0)
         encoder.setTexture(paperMask, index: 1)
         encoder.setTexture(paperTexture, index: 2)
-        encoder.setTexture(destination, index: 3)
+        encoder.setTexture(overlayPaperTexture, index: 3)
+        encoder.setTexture(destination, index: 4)
         encoder.dispatch2D(
             state: self.pipelineState,
             exact: destination.size,

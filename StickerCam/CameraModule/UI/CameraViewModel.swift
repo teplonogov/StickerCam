@@ -9,7 +9,6 @@ protocol CameraViewModelProtocol {
     func viewDidTapRetake()
     func viewDidTapMakeSticker()
     func viewDidTapSaveSticker()
-    func viewDidTapPaper(id: String)
 }
 
 final class CameraViewModel: CameraViewModelProtocol {
@@ -18,8 +17,21 @@ final class CameraViewModel: CameraViewModelProtocol {
     
     private let captureService: CaptureServiceProtocol
     private let stickerProcessor: StickerProcessor
-    private var paperType: PaperType = .crumpled
     
+    private let paperTexture: MTLTexture? = {
+        return UIImage(
+            named: "PaperTexture",
+            in: .main,
+            with: nil
+        )?.pngTexture(gpu: .default)
+    }()
+    private let overlayPaperTexture: MTLTexture? = {
+        return UIImage(
+            named: "CrumpledPaperTexture",
+            in: .main,
+            with: nil
+        )?.pngTexture(gpu: .default)
+    }()
     private var capturedImage: CGImage?
     private var stickerImage: CIImage?
     
@@ -59,7 +71,8 @@ final class CameraViewModel: CameraViewModelProtocol {
     func viewDidTapMakeSticker() {
         guard
             let capturedImage = self.capturedImage,
-            let paperTexture = self.paperType.texture
+            let paperTexture = self.paperTexture,
+            let overlayPaperTexture = self.overlayPaperTexture
         else { return }
         Task.detached(priority: .userInitiated) { [weak self] in
             guard let self = self else { return }
@@ -67,7 +80,9 @@ final class CameraViewModel: CameraViewModelProtocol {
                 // TODO: Support landscape orientation in CaptureService and here
                 let ciImage = CIImage(cgImage: capturedImage).oriented(.right)
                 let stickerImage = try await self.stickerProcessor.generateSticker(
-                    image: ciImage, paperTexture: paperTexture
+                    image: ciImage, 
+                    paper: paperTexture,
+                    overlayPaper: overlayPaperTexture
                 )
                 self.stickerImage = stickerImage
                 await MainActor.run {
@@ -104,13 +119,6 @@ final class CameraViewModel: CameraViewModelProtocol {
                 print(error)
             }
         }
-    }
-    
-    func viewDidTapPaper(id: String) {
-        guard let paper = PaperType.allCases.first(where: { $0.id == id }) else { return }
-        self.paperType = paper
-        // TODO: Better to cache textures for change paper, but algorithm is fast and this is not crytical
-        self.viewDidTapMakeSticker()
     }
     
     // MARK: - Private
@@ -150,39 +158,6 @@ extension CameraViewModel: CaptureServiceDelegate {
         Task.detached(priority: .userInitiated) { [weak self] in
             guard let self = self else { return }
             await self.captureService.stopSession()
-        }
-    }
-}
-
-enum PaperType: String, CaseIterable {
-    case crumpled
-    case plain
-    
-    var texture: MTLTexture? {
-        return UIImage(
-            named: self.textureName,
-            in: .main,
-            with: nil
-        )?.pngTexture(gpu: .default)
-    }
-    
-    var id: String {
-        return self.rawValue
-    }
-    
-    var name: String {
-        switch self {
-        case .plain:
-            return "Plain"
-        case .crumpled:
-            return "Crumpled"
-        }
-    }
-    
-    private var textureName: String {
-        switch self {
-        case .crumpled: return "CrumpledPaperTexture"
-        case .plain: return "PaperTexture"
         }
     }
 }

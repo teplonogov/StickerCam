@@ -5,22 +5,25 @@ using namespace metal;
 kernel void stickerKernel(texture2d<float, access::read> sticker [[ texture(0) ]],
                           texture2d<float, access::read> paperMask [[ texture(1) ]],
                           texture2d<float, access::read> paperTexture [[ texture(2) ]],
-                          texture2d<float, access::write> destination [[ texture(3) ]],
+                          texture2d<float, access::read> overlayPaperTexture [[ texture(3) ]],
+                          texture2d<float, access::write> destination [[ texture(4) ]],
                           uint2 position [[thread_position_in_grid]]) {
     float4 stickerValue = sticker.read(position);
     float4 paperMaskValue = paperMask.read(position);
     float4 paperTextureValue = paperTexture.read(position);
+    float4 overlayPaperTextureValue = overlayPaperTexture.read(position);
 
     float4 maskedPaperTexture = paperTextureValue * paperMaskValue.r;
 
     float4 resultColor;
-    if (stickerValue.a < 1.0) {
+    if (stickerValue.a < 0.8) {
         resultColor = maskedPaperTexture;
     } else {
-        resultColor = stickerValue;
+        // for smooth edges between object and paper background
+        resultColor = mix(maskedPaperTexture, stickerValue, stickerValue.a);
     }
 
-    destination.write(resultColor, position);
+    destination.write(resultColor * overlayPaperTextureValue, position);
 }
 
 kernel void alphaMaskKernel(texture2d<float, access::read> source [[ texture(0) ]],

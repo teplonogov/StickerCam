@@ -35,7 +35,11 @@ final class StickerProcessor {
     
     // MARK: - Public
     
-    func generateSticker(image: CIImage, paperTexture: MTLTexture) async throws -> CIImage {
+    func generateSticker(
+        image: CIImage,
+        paper: MTLTexture,
+        overlayPaper: MTLTexture
+    ) async throws -> CIImage {
         let (stickerImage, strokeScale) = try await self.segmentationService.generateStickerImage(
             from: image,
             brushSize: CGFloat(self.brush.pointSize)
@@ -61,18 +65,25 @@ final class StickerProcessor {
         
         let stickerResult = try maskTexture.matchingTexture()
         let resizedPaperTexture = try maskTexture.matchingTexture()
+        let overlayPaperTexture = try maskTexture.matchingTexture()
         
         let commandBuffer = MPSCommandBuffer(from: self.gpu.commandQueue)
         
         self.gpu.imageScaler.encode(
             commandBuffer: commandBuffer,
-            sourceTexture: paperTexture,
+            sourceTexture: paper,
             destinationTexture: resizedPaperTexture
+        )
+        self.gpu.imageScaler.encode(
+            commandBuffer: commandBuffer,
+            sourceTexture: overlayPaper,
+            destinationTexture: overlayPaperTexture
         )
         try self.stickerKernel.encode(
             sticker: stickerTexture,
             paperMask: paperMask,
             paperTexture: resizedPaperTexture,
+            overlayPaperTexture: overlayPaperTexture,
             destination: stickerResult,
             in: commandBuffer
         )
