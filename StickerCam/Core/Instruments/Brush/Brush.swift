@@ -23,7 +23,7 @@ class Brush {
     private let gpu: GPU
     private(set) var pipelineState: MTLRenderPipelineState!
     private(set) var texture: MTLTexture?
-    private var pointStep: Float {
+    private var initialPointStep: Float {
         self.pointSize / 4
     }
     private var currentStrokeVertices: [Point] = []
@@ -41,12 +41,13 @@ class Brush {
         }
 
         var lastPoint = vertices[0]
+        let pointStep = self.initialPointStep * scale
 
         for i in 1 ..< vertices.count {
             let point = vertices[i]
             if (i == vertices.count - 1) ||
-                self.pointStep <= 1 ||
-                (self.pointStep > 1 && lastPoint.distance(to: point) >= Float(self.pointStep))
+                pointStep <= 1 ||
+                (pointStep > 1 && lastPoint.distance(to: point) >= Float(pointStep))
             {
                 let line = self.makeLine(from: lastPoint, to: point, scale: scale)
                 lines.append(contentsOf: line)
@@ -104,7 +105,7 @@ class Brush {
             begin: from,
             end: to,
             pointSize: Float(self.pointSize * scale),
-            pointStep: Float(self.pointStep),
+            pointStep: Float(self.initialPointStep * scale),
             color: self.renderingColor
         )
 
