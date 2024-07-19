@@ -1,3 +1,5 @@
+Test-Project for Lead Camera Engineer in Lapse
+
 First beta version of paper sricker camera. 
 
 How it works:
